@@ -7,7 +7,9 @@ https://learn.microsoft.com/en-us/training/modules/guided-project-arrays-iterati
 
 Doing the lesson so no select case or mutlidimensional arrays
 
+06/16/2026 Fixed error for those scoring 100 or more
 */
+string programStatement = "Daniel Turek\nSoftware Engineered this!";
 
 // initialize variables - graded assignments 
 int examAssignments = 5;
@@ -21,9 +23,10 @@ int[] beckyScores = new int[] { 92, 91, 90, 91, 92, 92, 92 };
 int[] chrisScores = new int[] { 84, 86, 88, 90, 92, 94, 96, 98 };
 int[] ericScores = new int[] { 80, 90, 100, 80, 90, 100, 80, 90 };
 int[] gregorScores = new int[] { 91, 91, 91, 91, 91, 91, 91 };    
+int[] danScores = new int[] {101, 100, 103, 105, 99, 100};
 
 // Student names
-string[] studentNames = new string[] { "Sophia", "Andrew", "Emma", "Logan", "Becky", "Chris", "Eric", "Gregor" };
+string[] studentNames = new string[] { "Sophia", "Andrew", "Emma", "Logan", "Becky", "Chris", "Eric", "Gregor", "Dan" };
 int[] studentScores = new int[10];
 
 Console.WriteLine("Student\t\tGrade\n");
@@ -48,7 +51,9 @@ foreach (string name in studentNames)
         studentScores = ericScores;
     else if (currentStudent == "Gregor")
         studentScores = gregorScores;
-    else
+    else if (currentStudent == "Dan")
+        studentScores = danScores;
+    else   
         continue;
 
 
@@ -80,7 +85,7 @@ foreach (string name in studentNames)
 
     if (currentStudentGrade >= 60)
     {
-        if (currentStudentGrade % 10 >= 7)
+        if ((currentStudentGrade >= 100) || (currentStudentGrade % 10 >= 7))
             {letterGrade += "+";}
         else if (currentStudentGrade % 10 < 3)
             {letterGrade += "-";}
@@ -90,5 +95,5 @@ foreach (string name in studentNames)
     Console.WriteLine($"{currentStudent}\t\t{currentStudentGrade}\t{letterGrade}"); 
 }
 
-Console.WriteLine("Press the Enter key to continue");
+Console.WriteLine("Press the Enter key to continue\n" + programStatement);
 Console.ReadLine();
