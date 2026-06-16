@@ -80,7 +80,27 @@ foreach (string name in studentNames)
     } 
 
     currentStudentGrade = (decimal)sumStudentScores / currentAssignments;
-    Console.WriteLine($"{currentStudent}\t\t{currentStudentGrade}\t?"); 
+    string letterGrade = "";
+
+    if ((currentStudentGrade / 10) >= 9)
+        {letterGrade = "A";}
+    else if ((currentStudentGrade / 10) >= 8)
+        {letterGrade = "B";}
+    else if ((currentStudentGrade / 10) >= 7)
+        {letterGrade = "C";}
+    else if ((currentStudentGrade / 10) >= 6)
+        {letterGrade = "D";}           
+
+    if (currentStudentGrade >= 60)
+    {
+        if (currentStudentGrade % 10 >= 7)
+            {letterGrade += "+";}
+        else if (currentStudentGrade % 10 <= 3)
+            {letterGrade += "-";}
+    }    
+    else letterGrade = "F";
+
+    Console.WriteLine($"{currentStudent}\t\t{currentStudentGrade}\t{letterGrade}"); 
 }
 
 /*
