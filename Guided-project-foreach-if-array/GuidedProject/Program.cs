@@ -31,6 +31,7 @@ int logan4 = 88;
 int logan5 = 96;
 int [] loganScores = new int[] {logan1, logan2, logan3, logan4, logan5};
 
+/* Replaced with generic studentScores
 int sophiaSum = 0;
 int andrewSum = 0;
 int emmaSum = 0;
@@ -40,28 +41,49 @@ decimal sophiaScore;
 decimal andrewScore;
 decimal emmaScore;
 decimal loganScore;
+*/
 
 // Student names
 string[] studentNames = new string[] { "Sophia", "Andrew", "Emma", "Logan" };
+int[] studentScores = new int[10];
+
+Console.WriteLine("Student\t\tGrade\n");
+
 
 foreach (string name in studentNames)
 {
-    if (name == "Sophia")
+    string currentStudent = name;
+        
+    if (currentStudent == "Sophia")
     {
-        foreach (int score in sophiaScores)
-        {
-            // add the exam score to the sum
-            sophiaSum += score;
-        }
+        studentScores = sophiaScores;
+    }   
+    if (currentStudent == "Andrew")
+    {
+        studentScores = andrewScores;
+    }   
+    if (currentStudent == "Emma")
+    {
+        studentScores = emmaScores;
+    }   
+    if (currentStudent == "Logan")
+    {
+        studentScores = loganScores;
+    }   
 
-        sophiaScore = (decimal)(sophiaSum) / currentAssignments;
+    int sumStudentScores = 0;
+    decimal currentStudentGrade = 0;
 
-        Console.WriteLine("Student\t\tGrade\n");
-        Console.WriteLine("Sophia:\t\t" + sophiaScore + "\tA-");
-    }
+    foreach( int score in studentScores)
+    {
+        sumStudentScores += score;
+    } 
+
+    currentStudentGrade = (decimal)sumStudentScores / currentAssignments;
+    Console.WriteLine($"{currentStudent}\t\t{currentStudentGrade}\t?"); 
 }
 
-
+/*
 //sophiaSum = sophia1 + sophia2 + sophia3 + sophia4 + sophia5;
 andrewSum = andrew1 + andrew2 + andrew3 + andrew4 + andrew5;
 emmaSum = emma1 + emma2 + emma3 + emma4 + emma5;
@@ -77,6 +99,6 @@ loganScore = (decimal)loganSum / currentAssignments;
 Console.WriteLine("Andrew:\t\t" + andrewScore + "\tB+");
 Console.WriteLine("Emma:\t\t" + emmaScore + "\tB");
 Console.WriteLine("Logan:\t\t" + loganScore + "\tA-");
-
+*/
 Console.WriteLine("Press the Enter key to continue");
 Console.ReadLine();
