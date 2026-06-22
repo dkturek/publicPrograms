@@ -1,3 +1,9 @@
+/* This is just the updated code from Start 
+   It does not have my improved grading system from the previous exercise
+   Daniel Turek
+   2026.06.22
+*/
+
 /* 
 This C# console application is designed to:
 - Use arrays to store student names and assignment scores.
@@ -33,7 +39,7 @@ string currentStudentLetterGrade = "";
 
 // display the header row for scores/grades
 Console.Clear();
-Console.WriteLine("Student\t\tGrade\tLetter Grade\n");
+Console.WriteLine("Student\t\tExam Score\tOverall\tGrade\t\tExtra Credit\n");
 
 /*
 The outer foreach loop is used to:
@@ -59,9 +65,12 @@ foreach (string name in studentNames)
     else if (currentStudent == "Logan")
         studentScores = loganScores;
 
-    int sumAssignmentScores = 0;
+    decimal sumAssignmentScores = 0;
 
-    decimal currentStudentGrade = 0;
+    decimal currentStudentGrade = 0;  
+    decimal currentStudentExamScore = 0;
+    decimal currentStudentExtraCredit = 0;
+    decimal currentStudentExtraPoints = 0;
 
     int gradedAssignments = 0;
 
@@ -74,13 +83,28 @@ foreach (string name in studentNames)
         gradedAssignments += 1;
 
         if (gradedAssignments <= examAssignments)
+        {
             sumAssignmentScores += score;
-
+            currentStudentExamScore += score;
+        }
         else
-            sumAssignmentScores += score / 10;
+        {
+            sumAssignmentScores += (decimal)score / 10;
+            currentStudentExtraCredit += score;
+        }
+    }
+        
+    currentStudentExamScore = (decimal)(currentStudentExamScore) / examAssignments;
+    currentStudentGrade = (decimal)(sumAssignmentScores) / examAssignments;
+    //Console.WriteLine($"Current student grade: {currentStudentGrade:0.00} {currentStudentExamScore:0.00}");
+
+
+    if (gradedAssignments > examAssignments)
+    {
+        currentStudentExtraCredit = (decimal) currentStudentExtraCredit / (gradedAssignments - examAssignments);
     }
 
-    currentStudentGrade = (decimal)(sumAssignmentScores) / examAssignments;
+    currentStudentExtraPoints = currentStudentGrade - currentStudentExamScore;
 
     if (currentStudentGrade >= 97)
         currentStudentLetterGrade = "A+";
@@ -124,7 +148,15 @@ foreach (string name in studentNames)
     // Student         Grade
     // Sophia:         92.2    A-
     
-    Console.WriteLine($"{currentStudent}\t\t{currentStudentGrade}\t{currentStudentLetterGrade}");
+    Console.Write($"{currentStudent}\t\t{currentStudentExamScore:0.00}\t\t{currentStudentGrade:0.00}\t{currentStudentLetterGrade}\t\t{currentStudentExtraCredit}");
+    if (currentStudentExtraPoints > 0)
+    {
+        Console.WriteLine($" ({currentStudentExtraPoints:0.00} pts)");
+    }
+    else
+    {
+        Console.WriteLine();
+    }
 }
 
 // required for running in VS Code (keeps the Output windows open to view results)
