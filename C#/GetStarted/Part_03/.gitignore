@@ -2,6 +2,9 @@
 bin/
 obj/
 
+# Initial Files
+*.zip
+
 # Visual Studio cache/options
 .vs/
 
