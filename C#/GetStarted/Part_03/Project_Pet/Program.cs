@@ -295,7 +295,7 @@ do
                 {
                     do
                     {
-                        Console.WriteLine($"Enter a physical description for the pet {ourAnimals[i, 0]}: {ourAnimals[i, 3]}");
+                        Console.WriteLine($"Enter a physical description for the pet {ourAnimals[i, 0]}: {ourAnimals[i, 3]}  (size, color, gender, weight, housebroken)");
                         readResult = Console.ReadLine();
                         if (readResult != null)
                         {
@@ -308,9 +308,44 @@ do
             break;
         case "4":
             // Ensure animal nicknames and personality descriptions are complete
+            /*
             Console.WriteLine("Challenge Project - please check back soon to see progress.");
             Console.WriteLine("Press the Enter key to continue.");
             readResult = Console.ReadLine();
+            ourAnimals[petCount, 3] = "Nickname: " + animalNickname;
+            ourAnimals[petCount, 5] = "Personality: " + animalPersonalityDescription;
+            */
+            for (int i = 0; i < maxPets; i++)
+            {
+                if (ourAnimals[i, 3] != "Nickname: ")
+                {
+                    do
+                    {
+                        Console.WriteLine($"Enter a nickname for the pet {ourAnimals[i, 0]}");
+                        readResult = Console.ReadLine();
+                        if (readResult != null)
+                        {
+                            if (readResult.Trim() != "")
+                            {
+                                ourAnimals[i, 3] = "Nickname: " + readResult.Trim();
+                            }
+                        }
+                    } while (ourAnimals[i, 3] == "Nickname: ");
+                }
+
+                if (ourAnimals[i, 5] == "Personality: " || ourAnimals[i, 5] == "Personality: tbd")
+                {
+                    do
+                    {
+                        Console.WriteLine($"Enter a personality description for the pet {ourAnimals[i, 0]}: {ourAnimals[i, 3]}  (likes or dislikes, tricks, energy level)");
+                        readResult = Console.ReadLine();
+                        if (readResult?.Trim() != null)
+                        {
+                            ourAnimals[i, 5] = "Personality: " + readResult.Trim();
+                        }
+                    } while (ourAnimals[i, 5] == "Personality: " || ourAnimals[i, 5] == "Personality: tbd");
+                }
+            }
             break;
         case "5":
             // Edit an animal's age
