@@ -267,9 +267,44 @@ do
             break;
         case "3":
             // Ensure animal ages and physical descriptions are complete
+            /*
             Console.WriteLine("Challenge Project - please check back soon to see progress.");
             Console.WriteLine("Press the Enter key to continue.");
             readResult = Console.ReadLine();
+            */
+            for (int i = 0; i < maxPets; i++)
+            {
+                if (ourAnimals[i, 2] != "Age: ")
+                {
+                    do
+                    {
+                        Console.WriteLine($"Enter a numeric age for the pet {ourAnimals[i, 0]}: {ourAnimals[i, 3]}");
+                        readResult = Console.ReadLine();
+                        if (readResult != null)
+                        {
+                            int age = int.Parse(readResult);
+                            if (age >= 0)
+                            {
+                                ourAnimals[i, 2] = "Age: " + readResult;
+                            }
+                        }
+                    } while (ourAnimals[i, 2] == "Age: ");
+                }
+
+                if (ourAnimals[i, 4] == "Physical description: " || ourAnimals[i, 4] == "Physical description: tbd")
+                {
+                    do
+                    {
+                        Console.WriteLine($"Enter a physical description for the pet {ourAnimals[i, 0]}: {ourAnimals[i, 3]}");
+                        readResult = Console.ReadLine();
+                        if (readResult != null)
+                        {
+                            ourAnimals[i, 4] = "Physical description: " + readResult;
+                        }
+                    } while (ourAnimals[i, 4] == "Physical description: " || ourAnimals[i, 4] == "Physical description: tbd");
+                }
+            }
+            
             break;
         case "4":
             // Ensure animal nicknames and personality descriptions are complete
