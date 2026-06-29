@@ -274,6 +274,11 @@ do
             */
             for (int i = 0; i < maxPets; i++)
             {
+                //skip those without an ID
+                if (ourAnimals[i, 0].Equals("ID #: "))
+                    continue;
+                
+
                 if (ourAnimals[i, 2] != "Age: ")
                 {
                     do
@@ -317,7 +322,11 @@ do
             */
             for (int i = 0; i < maxPets; i++)
             {
-                if (ourAnimals[i, 3] != "Nickname: ")
+                //skip those without an ID
+                if (ourAnimals[i, 0].Equals("ID #: "))
+                    continue;
+                
+                if (ourAnimals[i, 3] == "Nickname: ")
                 {
                     do
                     {
